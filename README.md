@@ -8,30 +8,32 @@
 
 ## 1. Ажлын орчин
 
-```
+Эцсийн Maven лог болон гурван мутацийн үр дүнг 2026-11-24-нд доорх орчинд дахин гаргасан. Төсөл Java 17-д хөрвөдөг бөгөөд JUnit Jupiter 5.10.2, Mockito 5.11.0 ашигладаг.
+
+```text
 $ java -version
-openjdk version "17.0.20.1" 2026-08-18
-OpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)
-OpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)
+openjdk version "25.0.3" 2026-04-21 LTS
+OpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)
 
 $ mvn -version
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/C:/Program%20Files/JetBrains/IntelliJ%20IDEA%202025.2.5/plugins/maven/lib/maven3/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
 Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
-Maven home: C:\Users\THE_FEDzUP\tools\apache-maven-3.9.9
-Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: C:\Program Files\Eclipse Adoptium\jdk-17.0.20.101-hotspot
-Default locale: en_US, platform encoding: Cp1252
+Maven home: C:\Program Files\JetBrains\IntelliJ IDEA 2025.2.5\plugins\maven\lib\maven3
+Java version: 25.0.3, vendor: Eclipse Adoptium, runtime: C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot
+Default locale: en_US, platform encoding: UTF-8
 OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 ```
 
-| Зүйл | Утга |
-|---|---|
-| JDK | Eclipse Temurin OpenJDK 17.0.20.1 (JDK, `javac`-тэй) |
-| Build | Apache Maven 3.9.9 |
-| Тест | JUnit Jupiter 5.10.2 + Mockito 5.11.0 (`mockito-junit-jupiter`), surefire 3.2.5 |
-| ҮС | Windows 11 Pro (26200), Git Bash |
+Төслийн үндсэн хавтаст `mvn test` ажиллуулна. Энд ашигласан JDK 25 дээр Byte Buddy-д зориулж `mvn "-Dnet.bytebuddy.experimental=true" test` командаар ажиллуулсан. Шинэ локал clone-оос мөн 10 тест амжилттай ажилласан.
 
-> Starter төслийг (Teams → Class Materials → Labs → Lab08) өөрчлөлгүй хуулсан: `pom.xml`,
-> `src/main/java/mn/edu/must/sqat/` (`Student`, `StudentRepository`, `EmailSender`,
-> `CourseRegistrationService`). Анхны `mvn test` → "No tests to run." + BUILD SUCCESS.
+- [Үндсэн Maven лог](results/mvn-test.txt)
+- [Мутаци 1](results/mvn-test-mutant-1.txt), [мутаци 2](results/mvn-test-mutant-2.txt), [мутаци 3](results/mvn-test-mutant-3.txt)
+
 
 ## 2. Репозиторийн бүтэц
 
